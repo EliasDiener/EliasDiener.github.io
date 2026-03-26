@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lebenslauf | Elias Diener</title>
+  <style>
+    :root{
+      --page:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#dbe4f0;
+      --accent:#2563eb;
+      --accent-soft:#eff6ff;
+      --max:1080px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,Arial,sans-serif;
+      background:#e5eef8;
+      color:var(--text);
+      padding:28px;
+    }
+    .page{
+      max-width:var(--max);
+      margin:0 auto;
+      background:var(--page);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 24px 60px rgba(15,23,42,.12);
+    }
+    .top{
+      padding:38px 42px 28px;
+      background:linear-gradient(135deg,#eff6ff,#ffffff 60%);
+      border-bottom:1px solid var(--line);
+    }
+    .name{
+      font-size:clamp(2rem,4vw,2.9rem);
+      font-weight:800;
+      letter-spacing:.2px;
+      margin-bottom:8px;
+    }
+    .role{
+      color:var(--muted);
+      font-size:1.02rem;
+      max-width:760px;
+    }
+    .contact{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+    .contact span,.contact a{
+      font-size:.95rem;
+      color:var(--muted);
+      background:var(--accent-soft);
+      padding:9px 12px;
+      border-radius:999px;
+      text-decoration:none;
+    }
+    .layout{
+      display:grid;
+      grid-template-columns:320px 1fr;
+    }
+    .sidebar{
+      background:#f8fbff;
+      border-right:1px solid var(--line);
+      padding:34px 30px;
+    }
+    .main{
+      padding:34px 34px 38px;
+    }
+    .section{margin-bottom:28px}
+    .section:last-child{margin-bottom:0}
+    .section h2{
+      font-size:.98rem;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--accent);
+      margin-bottom:14px;
+    }
+    .section p,.section li{
+      color:var(--muted);
+      font-size:.98rem;
+      line-height:1.65;
+    }
+    .list{list-style:none;display:grid;gap:12px}
+    .skill-block{
+      display:grid;
+      gap:12px;
+    }
+    .skill-item{
+      padding:14px 15px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+    }
+    .skill-item strong{
+      display:block;
+      color:var(--text);
+      margin-bottom:4px;
+      font-size:.96rem;
+    }
+    .entry{
+      padding:0 0 18px 0;
+      margin-bottom:18px;
+      border-bottom:1px solid var(--line);
+    }
+    .entry:last-child{
+      margin-bottom:0;
+      padding-bottom:0;
+      border-bottom:none;
+    }
+    .entry-head{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      margin-bottom:8px;
+    }
+    .entry-title{
+      font-weight:700;
+      font-size:1.04rem;
+      color:var(--text);
+    }
+    .entry-time{
+      color:var(--muted);
+      font-size:.92rem;
+      white-space:nowrap;
+    }
+    .entry-sub{
+      color:var(--muted);
+      font-weight:600;
+      margin-bottom:8px;
+      font-size:.95rem;
+    }
+    .tag-wrap{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+    .tag{
+      font-size:.86rem;
+      color:var(--accent);
+      background:var(--accent-soft);
+      border-radius:999px;
+      padding:7px 10px;
+    }
+    .toolbar{
+      max-width:var(--max);
+      margin:0 auto 16px;
+      display:flex;
+      justify-content:flex-end;
+      gap:12px;
+    }
+    .toolbar a,.toolbar button{
+      border:none;
+      cursor:pointer;
+      font:inherit;
+      background:#0f172a;
+      color:#fff;
+      padding:12px 16px;
+      border-radius:12px;
+      text-decoration:none;
+    }
+    .toolbar .light{
+      background:#fff;
+      color:#0f172a;
+      border:1px solid #cbd5e1;
+    }
+    @media (max-width:920px){
+      body{padding:16px}
+      .layout{grid-template-columns:1fr}
+      .sidebar{border-right:none;border-bottom:1px solid var(--line)}
+      .entry-head{flex-direction:column}
+      .entry-time{white-space:normal}
+    }
+    @media print{
+      body{background:#fff;padding:0}
+      .toolbar{display:none}
+      .page{box-shadow:none;border-radius:0;max-width:none}
+      .top{padding:28px 30px 20px}
+      .sidebar,.main{padding:24px}
+      a{text-decoration:none;color:inherit}
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button onclick="window.print()">Als PDF speichern</button>
+    <a class="light" href="index.html">Zum Portfolio</a>
+  </div>
+
+  <main class="page">
+    <header class="top">
+      <div class="name">Elias Diener</div>
+      <div class="role">
+        IT-interessierter Schüler mit Fokus auf Linux, Server, praktische Projekte und grundlegende Programmierung.
+      </div>
+      <div class="contact">
+        <span>Liebermannstraße 32</span>
+        <span>017676767871</span>
+        <a href="mailto:eliasdiener2008@gmail.com">eliasdiener2008@gmail.com</a>
+        <a href="https://github.com/EliasDiener/homelab" target="_blank">github.com/EliasDiener/homelab</a>
+      </div>
+    </header>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <div class="section">
+          <h2>Profil</h2>
+          <p>
+            Ruhig, konzentriert und lernbereit. Starkes Interesse an Technik, Systemen und dem Verständnis
+            von Software sowie Hardware. Eigenständiges Lernen und praktische Umsetzung stehen im Mittelpunkt.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>Kenntnisse</h2>
+          <div class="skill-block">
+            <div class="skill-item">
+              <strong>Programmierung</strong>
+              <p>C++ (Grundlagen), Raylib</p>
+            </div>
+            <div class="skill-item">
+              <strong>Systeme</strong>
+              <p>Linux, Ubuntu Desktop, Ubuntu Server</p>
+            </div>
+            <div class="skill-item">
+              <strong>Tools</strong>
+              <p>VS Code, GitHub, Terminal</p>
+            </div>
+            <div class="skill-item">
+              <strong>Server</strong>
+              <p>Nextcloud, Jellyfin, erste Erfahrungen mit Docker</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Stärken</h2>
+          <ul class="list">
+            <li>Schnelle Auffassungsgabe</li>
+            <li>Eigeninitiative</li>
+            <li>Konzentrierte Arbeitsweise</li>
+            <li>Technisches Interesse</li>
+            <li>Hohe Lernbereitschaft</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Sprachen</h2>
+          <ul class="list">
+            <li>Deutsch – Muttersprache</li>
+            <li>Englisch – fließend</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="main">
+        <div class="section">
+          <h2>Projekte</h2>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Heimserver / Homelab</div>
+            </div>
+            <div class="entry-sub">Eigenes Praxisprojekt</div>
+            <p>
+              Einrichtung eines eigenen Servers mit Ubuntu Server. Nutzung von Nextcloud für den Dateizugriff
+              sowie Jellyfin für lokale Medienverwaltung. Zusätzlich erste praktische Erfahrungen mit Docker.
+            </p>
+            <div class="tag-wrap">
+              <span class="tag">Ubuntu Server</span>
+              <span class="tag">Nextcloud</span>
+              <span class="tag">Jellyfin</span>
+              <span class="tag">Docker</span>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="entry-title">C++ Projekt mit Raylib</div>
+            </div>
+            <div class="entry-sub">Aktuelles Lernprojekt</div>
+            <p>
+              Entwicklung eines kleinen eigenen Projekts mit C++ und Raylib zur Vertiefung von Grundlagen
+              in Programmierung, Logik und technischem Verständnis.
+            </p>
+            <div class="tag-wrap">
+              <span class="tag">C++</span>
+              <span class="tag">Raylib</span>
+              <span class="tag">Game Development</span>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Technische Lernschwerpunkte</div>
+            </div>
+            <div class="entry-sub">Eigenständige Weiterbildung</div>
+            <p>
+              Fortlaufende Beschäftigung mit Mikrocontrollern, Hardware-Grundlagen, Systemverständnis und dem Aufbau
+              von Computern bis hin zu den Grundlagen von Prozessoren und Silizium.
+            </p>
+          </article>
+        </div>
+
+        <div class="section">
+          <h2>Bildungsweg</h2>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="entry-title">BBS Fredenberg</div>
+              <div class="entry-time">2025 – heute</div>
+            </div>
+            <div class="entry-sub">Gymnasiale Oberstufe</div>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Heinrich Büssing Schule, Braunschweig</div>
+              <div class="entry-time">2024 – 2025</div>
+            </div>
+            <div class="entry-sub">Einführungsphase der gymnasialen Oberstufe</div>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Oberschule Söhlde</div>
+              <div class="entry-time">2022 – 2024</div>
+            </div>
+            <div class="entry-sub">Erweiterter Sekundarabschluss I</div>
+          </article>
+        </div>
+
+        <div class="section">
+          <h2>Praktische Erfahrung</h2>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Salzgitter-Tafel e.V.</div>
+              <div class="entry-time">09/2023</div>
+            </div>
+            <div class="entry-sub">Praktikant / ehrenamtliche Unterstützung</div>
+            <p>
+              Unterstützung im Arbeitsbereich, strukturierte Ausführung übertragener Aufgaben und praktische Einblicke
+              in organisierte Abläufe und verantwortungsbewusstes Arbeiten.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
