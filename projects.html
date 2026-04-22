@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Elias Diener</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="index.html" class="logo">ED<span class="logo-dot">.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="projects.html" class="nav-link active">Projects</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="lab.html" class="nav-link">Lab</a></li>
+        <li><a href="https://github.com/EliasDiener" target="_blank" class="nav-link nav-gh">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="hero-bg">
+      <div class="grid-texture"></div>
+      <div class="glow glow-1"></div>
+    </div>
+    <div class="container">
+      <div class="section-label reveal">My work</div>
+      <h1 class="page-title reveal reveal-delay-1">Projects</h1>
+      <p class="page-sub reveal reveal-delay-2">Every project written entirely by me. No AI-generated code, no copy-paste. Just C++ and Raylib.</p>
+    </div>
+  </div>
+
+  <main class="projects-main">
+    <div class="container">
+
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="game">Games</button>
+        <button class="filter-btn" data-filter="tool">Tools</button>
+        <button class="filter-btn" data-filter="wip">In Progress</button>
+      </div>
+
+      <!-- 01 DEFEND A CUBE -->
+      <article class="project-showcase reveal" id="game1" data-category="game">
+        <div class="showcase-header">
+          <div class="showcase-meta">
+            <span class="showcase-num">01</span>
+            <div class="tag-row">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">Raylib</span>
+              <span class="project-tag">Game</span>
+              <span class="project-tag tag-done">Finished</span>
+              <span class="project-tag tag-done">0% AI</span>
+            </div>
+          </div>
+          <h2 class="showcase-title">Defend a Cube</h2>
+          <p class="showcase-tagline">My first real C++ project — built to learn, not to ship fast.</p>
+        </div>
+        <div class="showcase-body">
+          <div class="showcase-left">
+            <div class="showcase-screen">
+              <img src="assets/img/game1-screen.png" alt="Defend a Cube" />
+            </div>
+          </div>
+          <div class="showcase-right">
+            <div class="showcase-desc">
+              <p>My first ever real C++ project. The code isn't the cleanest and the structure isn't perfect — but that's the point. I spent around 2 weeks learning C++ and Raylib from scratch to get this far, without touching AI once.</p>
+              <p style="margin-top:12px">I really wanted to learn by myself, because I think vibe coding won't teach you anything. Every bug I hit, I had to actually understand and fix — no shortcuts.</p>
+              <p class="code-note" style="margin-top:14px"><span class="note-icon">ℹ</span> This project predates my <code>UiElements</code> framework — the UI helpers were written inline before I knew about splitting code across files.</p>
+            </div>
+            <div class="feature-list">
+              <h3>What I built</h3>
+              <ul>
+                <li>Wave-based enemy spawner with fixed spawn points</li>
+                <li>Directional projectile system with normalized vectors</li>
+                <li>Collision-based damage, armor and HP system</li>
+                <li>In-game stat shop (DMG, HP, Armor, Fire Rate)</li>
+                <li>Main menu, skill tree stub, audio with Raylib</li>
+              </ul>
+            </div>
+            <div class="showcase-actions">
+              <a href="https://github.com/EliasDiener" target="_blank" class="btn btn-primary btn-sm">GitHub →</a>
+            </div>
+          </div>
+        </div>
+        <div class="code-accordion">
+          <button class="accordion-toggle" data-target="code-game1-main">
+            <span class="acc-icon">▶</span>
+            <span class="acc-filename">main2.cpp</span>
+            <span class="acc-lines">~550 lines</span>
+          </button>
+          <div class="accordion-body" id="code-game1-main">
+            <div class="code-header">
+              <span class="code-filename">main2.cpp</span>
+              <span class="code-lang">C++</span>
+            </div>
+            <pre><code class="cpp-code" data-src="sources/main2.cpp.txt"></code></pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- 1.5 UIELEMENTS -->
+      <article class="project-showcase reveal" id="uielements" data-category="tool">
+        <div class="showcase-header">
+          <div class="showcase-meta">
+            <span class="showcase-num">1.5</span>
+            <div class="tag-row">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">Header / .cpp</span>
+              <span class="project-tag">Framework</span>
+              <span class="project-tag tag-done">Finished</span>
+              <span class="project-tag tag-done">0% AI</span>
+            </div>
+          </div>
+          <h2 class="showcase-title">UiElements</h2>
+          <p class="showcase-tagline">My first step into multi-file C++ — a small reusable UI base class.</p>
+        </div>
+        <div class="showcase-body">
+          <div class="showcase-left">
+            <div class="showcase-screen">
+              <div class="screen-placeholder">
+                <span class="screen-icon">⚙</span>
+                <p>Library — no screenshot</p>
+                <code>Header + Implementation</code>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-right">
+            <div class="showcase-desc">
+              <p>After finishing Defend a Cube, I noticed I was copy-pasting the same UI helper code everywhere. So I built <code>UiElements</code> — a small base class that handles mouse tracking, hover/click detection and drawing boxes with centered text.</p>
+              <p style="margin-top:12px">This was my first time properly splitting code across a <code>.h</code> header and a <code>.cpp</code> implementation file, and using inheritance to share functionality between classes. No AI — I wanted to actually understand how includes and class hierarchies work in C++.</p>
+            </div>
+            <div class="feature-list">
+              <h3>What I built</h3>
+              <ul>
+                <li>Mouse rectangle tracking via <code>updateMouse()</code></li>
+                <li>Hover and click detection with collision checks</li>
+                <li>Centered-text box drawing helpers</li>
+                <li>Clean <code>.h</code> / <code>.cpp</code> split with <code>#pragma once</code></li>
+                <li>Inherited by UI, PauseMenu, GameOver in Cube Runner</li>
+              </ul>
+            </div>
+            <div class="showcase-actions">
+              <a href="https://github.com/EliasDiener" target="_blank" class="btn btn-primary btn-sm">GitHub →</a>
+            </div>
+          </div>
+        </div>
+        <div class="code-accordion">
+          <button class="accordion-toggle" data-target="code-ui-h">
+            <span class="acc-icon">▶</span>
+            <span class="acc-filename">UiElements.h</span>
+            <span class="acc-lines">Header</span>
+          </button>
+          <div class="accordion-body" id="code-ui-h">
+            <div class="code-header">
+              <span class="code-filename">UiElements.h</span>
+              <span class="code-lang">C++</span>
+            </div>
+            <pre><code class="cpp-code" data-src="sources/UiElements.h.txt"></code></pre>
+          </div>
+          <button class="accordion-toggle" data-target="code-ui-cpp">
+            <span class="acc-icon">▶</span>
+            <span class="acc-filename">UiElements.cpp</span>
+            <span class="acc-lines">Implementation</span>
+          </button>
+          <div class="accordion-body" id="code-ui-cpp">
+            <div class="code-header">
+              <span class="code-filename">UiElements.cpp</span>
+              <span class="code-lang">C++</span>
+            </div>
+            <pre><code class="cpp-code" data-src="sources/UiElements.cpp.txt"></code></pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 CUBE RUNNER -->
+      <article class="project-showcase reveal" id="game2" data-category="game">
+        <div class="showcase-header">
+          <div class="showcase-meta">
+            <span class="showcase-num">02</span>
+            <div class="tag-row">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">Raylib</span>
+              <span class="project-tag">cJSON</span>
+              <span class="project-tag">Game</span>
+              <span class="project-tag tag-done">Finished</span>
+              <span class="project-tag tag-done">0% AI</span>
+            </div>
+          </div>
+          <h2 class="showcase-title">Cube Runner</h2>
+          <p class="showcase-tagline">Jump. Survive. Don't get hit. Physics and JSON save — built from scratch.</p>
+        </div>
+        <div class="showcase-body showcase-body--reverse">
+          <div class="showcase-left">
+            <div class="showcase-screen">
+              <img src="assets/img/game2-screen.png" alt="Cube Runner" />
+            </div>
+          </div>
+          <div class="showcase-right">
+            <div class="showcase-desc">
+              <p>My second project — this time with a clear goal: understand physics and persistent data. I implemented a velocity-based gravity and jump system, and used cJSON to save and load the highscore between sessions.</p>
+              <p style="margin-top:12px">Designed to eventually run as a web app. The C++ → web translation is still in progress. No AI — every line written and debugged by hand.</p>
+            </div>
+            <div class="feature-list">
+              <h3>What I built</h3>
+              <ul>
+                <li>Velocity-based gravity and jump system</li>
+                <li>Obstacle spawner with increasing speed over time</li>
+                <li>Collision detection and game over flow</li>
+                <li>Highscore persistence with cJSON (save/load)</li>
+                <li>Pause menu, game over screen, live score counter</li>
+                <li>Reusable <code>UiElements</code> base class via inheritance</li>
+              </ul>
+            </div>
+            <div class="showcase-actions">
+              <a href="https://github.com/EliasDiener" target="_blank" class="btn btn-primary btn-sm">GitHub →</a>
+              <a href="lab.html" class="btn btn-ghost btn-sm">Play Demo →</a>
+            </div>
+          </div>
+        </div>
+        <div class="code-accordion">
+          <button class="accordion-toggle" data-target="code-game2-main">
+            <span class="acc-icon">▶</span>
+            <span class="acc-filename">main.cpp</span>
+            <span class="acc-lines">~350 lines</span>
+          </button>
+          <div class="accordion-body" id="code-game2-main">
+            <div class="code-header">
+              <span class="code-filename">main.cpp</span>
+              <span class="code-lang">C++</span>
+            </div>
+            <pre><code class="cpp-code" data-src="sources/main.cpp.txt"></code></pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 UI EDITOR -->
+      <article class="project-showcase project-showcase--wip reveal" id="editor" data-category="wip">
+        <div class="wip-banner">
+          <span>🔨 In Progress — actively building this</span>
+        </div>
+        <div class="showcase-header">
+          <div class="showcase-meta">
+            <span class="showcase-num">03</span>
+            <div class="tag-row">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">Raylib</span>
+              <span class="project-tag">Tool</span>
+              <span class="project-tag wip-tag">In Progress</span>
+            </div>
+          </div>
+          <h2 class="showcase-title">UI Editor</h2>
+          <p class="showcase-tagline">A custom editor for building UI layouts — made with Raylib, built to understand tooling from the inside.</p>
+        </div>
+        <div class="showcase-body">
+          <div class="showcase-left">
+            <div class="showcase-screen">
+              <div class="screen-placeholder wip-placeholder">
+                <span class="screen-icon">🛠</span>
+                <p>Screenshot coming soon</p>
+                <code>Still in development</code>
+              </div>
+            </div>
+            <div class="progress-block">
+              <div class="progress-header">
+                <span>Build progress</span>
+                <span>Early stage</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="--p: 25%"></div>
+              </div>
+              <div class="progress-items">
+                <div class="progress-item done">✓ Window &amp; render loop</div>
+                <div class="progress-item done">✓ Click-to-place rectangles</div>
+                <div class="progress-item done">✓ Screen-relative coordinate system</div>
+                <div class="progress-item pending">○ JSON export of placed elements</div>
+                <div class="progress-item pending">○ UI element types (buttons, panels…)</div>
+                <div class="progress-item pending">○ Select &amp; delete elements</div>
+                <div class="progress-item pending">○ Full layout export</div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-right">
+            <div class="showcase-desc">
+              <p>Instead of using an existing editor, I'm building my own — specifically for creating UI layouts. The goal is to visually place and arrange UI elements and export them to a usable format.</p>
+              <p style="margin-top:12px">This is my most complex project so far. I'm also using it to learn how to work effectively with AI as a tool — writing the architecture and logic myself, using AI to speed up the parts where I already know what I want.</p>
+            </div>
+            <div class="feature-list">
+              <h3>Planned features</h3>
+              <ul>
+                <li>Visual placement of UI elements</li>
+                <li>JSON export of the full layout</li>
+                <li>Screen-size-independent coordinate system</li>
+                <li>Select, move and delete placed elements</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">ED<span class="logo-dot">.</span></div>
+      <div class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="lab.html">Lab</a>
+        <a href="https://github.com/EliasDiener" target="_blank">GitHub</a>
+        <a href="mailto:eliasdiener2008@gmail.com">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Elias Diener. Built by hand.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/code-embed.js"></script>
+</body>
+</html>
