@@ -1,0 +1,348 @@
+#include "raylib.h"
+#include "../FrameWork/Includes/UiElements.h"
+#include <vector>
+#include <cjson/cJSON.h>
+#include <stdio.h>
+ 
+class UI : public UiElements
+{
+public:
+    Rectangle pauseBtn;
+    bool pauseBtnClicked = false;
+
+    void update()
+    {
+        updateMouse();
+        pauseBtn = {20, 10, 80, 40};if(isClicked(pauseBtn)){pauseBtnClicked = true;}else{pauseBtnClicked = false;}
+    }
+
+    void draw()
+    {
+        int w = GetScreenWidth();
+        int h = GetScreenHeight();
+
+        // oben
+        DrawRectangle(0, 0, w, 60, DARKGRAY);
+
+        // unten
+        DrawRectangle(0, h - 60, w, 60, DARKGRAY);
+
+        // mitte
+        DrawRectangle(0, 60, w, h - 120, RAYWHITE);
+
+        // pause button
+        drawBoxWithTextRec(pauseBtn, pauseBtn.y + 10, LIGHTGRAY, "PAUSE", 20, BLACK);
+    }
+};
+class PauseMenu : public UiElements 
+{
+public:
+    Rectangle resumeBtn;
+    Rectangle menuBtn;
+    bool open = false;
+
+    void update(UI & ui)
+    {
+        updateMouse();
+        
+        if(ui.pauseBtnClicked){open = true;}
+
+        int w = GetScreenWidth();
+        int h = GetScreenHeight();
+
+        resumeBtn = {w / 2.0f - 100, h / 2.0f - 60, 200, 50};
+        if(isClicked(resumeBtn)){open = false;}
+        menuBtn   = {w / 2.0f - 100, h / 2.0f + 10, 200, 50};
+    }
+
+    bool isOpen()
+    {
+        if(open){return true;}else{return false;}
+    }
+
+    void draw()
+    {
+        if (!open) { return; }
+
+        int w = GetScreenWidth();
+        int h = GetScreenHeight();
+
+        DrawRectangle(0, 0, w, h, Fade(BLACK, 0.35f));
+
+        drawBoxWithText(w / 2 - 150, h / 2 - 140, 300, 60, h / 2 - 125, DARKGRAY, "PAUSED", 30, WHITE);
+
+        drawBoxWithTextRec(resumeBtn, resumeBtn.y + 12, LIGHTGRAY, "RESUME", 24, BLACK);
+        drawBoxWithTextRec(menuBtn, menuBtn.y + 12, LIGHTGRAY, "MENU", 24, BLACK);
+    }
+};
+class Player
+{
+    public:
+    float size=30;
+    float jumpCooldown = 0;
+    float velocityY = 0;
+    float upForce = 20; //also N wenn man springt oder so 
+    float gravity = 0.98; // gravity oder so 
+    float currentUpForce = 0;
+    float second = 0.01;
+    bool gameOver = false;
+    Vector2 playerVector2 = {150, 390-size};
+    Rectangle playerHitBox;
+    Color playerColor = RED; 
+    
+    void update()
+    {
+        playerHitBox = {playerVector2.x,playerVector2.y,size,size}; 
+    }
+// also wegen jump und so ich sollte einfach es machen wie in unity/realife also wir haben einfach permanete gravity und dann noch eine 
+// jumpf force stat up force und down force einfach Velocity_Y ich muss dan einfach nur kucken wie die units(einheiten also Newton und so) machen 
+
+    void applyGravity()
+    {   
+        float groundLevel = int(390-size);
+        velocityY += gravity;
+        playerVector2.y += velocityY;
+        if(int(playerVector2.y)>=groundLevel)
+        {velocityY=0;playerVector2.y=groundLevel;}
+    }
+
+
+    void jump()
+    {
+        bool jump = false;
+        if(jumpCooldown <= 0 && int(playerVector2.y) >= int(390-size) && IsKeyPressed(KEY_SPACE))
+        {jump = true;}
+        if(jump){velocityY-=upForce;jump=false;}
+    }
+
+    void draw()
+    {
+        DrawRectangleRec(playerHitBox,playerColor);
+    }
+
+};
+
+class Obstacle
+{
+    public:
+    float size;
+    float VelocityX;
+    Vector2 obstacleVector;
+    Rectangle obstacleHitBox;
+    
+    void update()
+    {
+        obstacleHitBox = {obstacleVector.x,obstacleVector.y,size,size};
+    }
+
+    void create(float speed,Vector2 spawnLoc,float Size)
+    {
+        VelocityX = -speed;
+        obstacleVector = spawnLoc;
+        size = Size;
+    }
+
+    bool checkColison(Player & player)
+    {
+        if(CheckCollisionRecs(obstacleHitBox,player.playerHitBox))
+        {player.gameOver = true;return true;}else{return false;}
+    }
+
+    void move()
+    {
+        obstacleVector.x += VelocityX;
+    }
+
+    void draw()
+    {
+        DrawRectangleRec(obstacleHitBox,GRAY);
+    }
+};
+
+class obstacleManager
+{
+    public:
+    float speed=5;
+    float size = 40;
+    float cooldown = 1;
+    Vector2 spawnloc = {900,390-size};  
+    std::vector<Obstacle> obstacles;
+    
+    void createNew()
+    {   
+        cooldown-=GetFrameTime();
+        if(cooldown<=0)
+        {
+            speed += 0.1;
+            Obstacle o;
+            o.create(speed,spawnloc,size);
+            obstacles.push_back(o);
+            cooldown = 2;
+        }
+    }
+
+    void update(Player & player)
+    {
+        for(int i = obstacles.size()-1; i>=0;i--)
+        {
+            obstacles[i].update();
+            obstacles[i].checkColison(player);
+            if(obstacles[i].obstacleHitBox.x<0-size){obstacles.erase(obstacles.begin()+i);}
+            obstacles[i].move();
+        }
+    }
+
+    void draw()
+    {
+        for(int i = obstacles.size()-1; i>=0;i--)
+        {
+            obstacles[i].draw();
+        }
+    }
+
+
+};
+
+class ScoreManager
+{
+public:
+    int score = 0;
+    int highscore = 0;
+    float timer = 0;
+    const char* filepath = "highscore.json";
+
+    void load()
+    {
+        FILE *f = fopen(filepath, "r");
+        if (!f) return; // noch keine Datei vorhanden, kein Problem
+
+        fseek(f, 0, SEEK_END);
+        long len = ftell(f);
+        rewind(f);
+
+        char *data = (char*)malloc(len + 1);
+        fread(data, 1, len, f);
+        data[len] = '\0';
+        fclose(f);
+
+        cJSON *json = cJSON_Parse(data);
+        if (json)
+        {
+            cJSON *hs = cJSON_GetObjectItem(json, "highscore");
+            if (hs) highscore = hs->valueint;
+            cJSON_Delete(json);
+        }
+        free(data);
+    }
+
+    void save()
+    {
+        cJSON *json = cJSON_CreateObject();
+        cJSON_AddNumberToObject(json, "highscore", highscore);
+
+        char *str = cJSON_Print(json);
+        FILE *f = fopen(filepath, "w");
+        fputs(str, f);
+        fclose(f);
+
+        cJSON_free(str);
+        cJSON_Delete(json);
+    }
+
+    void update(bool gamePaused, bool gameOver)
+    {
+        if (gamePaused || gameOver) return;
+
+        timer += GetFrameTime();
+        score = (int)timer;
+    }
+
+    void reset()
+    {
+        if (score > highscore)
+        {
+            highscore = score;
+            save();
+        }
+        score = 0;
+        timer = 0;
+    }
+
+    void draw()
+    {
+        DrawText(TextFormat("Score: %d", score), 320, 20, 20, WHITE);
+        DrawText(TextFormat("Best: %d", highscore), 500, 20, 20, YELLOW);
+    }
+};
+
+class GameOver : public UiElements
+{
+public:
+    bool active = false;
+
+    void update(Player& player, obstacleManager& om, ScoreManager& sm)
+    {
+    if(player.gameOver) { active = true; }
+    if(active && IsKeyPressed(KEY_ENTER))
+    {
+        active = false;
+        player.gameOver = false;
+        player.playerVector2 = {150, 390 - player.size};
+        player.velocityY = 0;
+        om.obstacles.clear();
+        om.cooldown = 1;
+        sm.reset(); // <-- hier
+    }
+    }
+
+    void draw()
+    {
+        if(!active) { return; }
+        int w = GetScreenWidth();
+        int h = GetScreenHeight();
+        DrawRectangle(0, 0, w, h, Fade(BLACK, 0.5f));
+        drawBoxWithText(w/2-150, h/2-80, 300, 70, h/2-55, DARKGRAY, "GAME OVER", 40, RED);
+        drawBoxWithText(w/2-150, h/2+10, 300, 50, h/2+25, DARKGRAY, "ENTER to Restart", 20, WHITE);
+    }
+};
+
+int main()
+{
+    UI ui;
+    PauseMenu pMenu;
+    GameOver g;
+    Player player;
+    obstacleManager o;
+    InitWindow(800, 450, "Cube Runner");
+    SetTargetFPS(60);
+    Rectangle button = {300, 180, 200, 60};
+    ScoreManager sm;
+    sm.load();
+    SetTargetFPS(60);
+    while (!WindowShouldClose())
+    {   
+        pMenu.update(ui);
+        ui.update();
+        g.update(player,o,sm);
+        sm.update(pMenu.isOpen(), player.gameOver);
+        if(!pMenu.isOpen()&&!player.gameOver)
+        {
+        player.applyGravity();
+        player.update();
+        player.jump();    
+        o.createNew();
+        o.update(player);
+        }
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        ui.draw();
+        pMenu.draw();
+        player.draw();
+        o.draw();
+        g.draw();
+        sm.draw();
+        EndDrawing();
+    }
+    CloseWindow();
+    return 0;
+}

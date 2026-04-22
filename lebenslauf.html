@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lebenslauf | Elias Diener</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    /* Lebenslauf-specific overrides — print-optimized, light theme */
+    body { background: #e8edf3; }
+
+    .cv-toolbar {
+      width: min(92%, 1000px);
+      margin: 24px auto 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cv-toolbar .back {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: #475569;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cv-toolbar .back:hover { color: #0f172a; }
+
+    .cv-page {
+      width: min(92%, 1000px);
+      margin: 0 auto 48px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+      overflow: hidden;
+      font-family: 'Syne', sans-serif;
+      color: #0f172a;
+    }
+
+    .cv-top {
+      padding: 40px 44px 30px;
+      background: linear-gradient(135deg, #f0fdf9 0%, #fff 60%);
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .cv-name {
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .cv-role {
+      font-size: 1rem;
+      color: #475569;
+      margin-bottom: 18px;
+    }
+    .cv-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cv-contact span,
+    .cv-contact a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: #475569;
+      background: #f0fdf9;
+      border: 1px solid #bbf7d0;
+      padding: 7px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+    .cv-contact a:hover { color: #0f172a; }
+
+    .cv-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+    }
+    .cv-sidebar {
+      background: #f8fafc;
+      border-right: 1px solid #e2e8f0;
+      padding: 32px 28px;
+    }
+    .cv-main { padding: 32px 36px; }
+
+    .cv-section { margin-bottom: 28px; }
+    .cv-section:last-child { margin-bottom: 0; }
+    .cv-section h2 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #10b981;
+      margin-bottom: 14px;
+    }
+    .cv-section p,
+    .cv-section li {
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.65;
+    }
+
+    .cv-skill-block { display: flex; flex-direction: column; gap: 10px; }
+    .cv-skill-item {
+      padding: 12px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .cv-skill-item strong {
+      display: block;
+      font-size: 0.88rem;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+    .cv-skill-item p { font-size: 0.84rem; }
+
+    .cv-strength-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .cv-strength-list li {
+      padding-left: 14px;
+      position: relative;
+    }
+    .cv-strength-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .cv-entry {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .cv-entry:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+    .cv-entry-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+    .cv-entry-title { font-weight: 700; font-size: 1rem; color: #0f172a; }
+    .cv-entry-time {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      white-space: nowrap;
+    }
+    .cv-entry-sub {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+    .cv-tag-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .cv-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      color: #10b981;
+      background: #f0fdf9;
+      border: 1px solid #bbf7d0;
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 800px) {
+      .cv-top { padding: 28px 24px 20px; }
+      .cv-layout { grid-template-columns: 1fr; }
+      .cv-sidebar { border-right: none; border-bottom: 1px solid #e2e8f0; }
+      .cv-main { padding: 24px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .cv-toolbar { display: none; }
+      .cv-page { box-shadow: none; border-radius: 0; max-width: none; margin: 0; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-toolbar">
+    <a href="index.html" class="back">← Back to Portfolio</a>
+    <button onclick="window.print()" class="btn btn-primary btn-sm">Save as PDF</button>
+  </div>
+
+  <main class="cv-page">
+    <header class="cv-top">
+      <div class="cv-name">Elias Diener</div>
+      <div class="cv-role">IT-interessierter Schüler · C++ · Raylib · Linux</div>
+      <div class="cv-contact">
+        <span>Liebermannstraße 32, Salzgitter</span>
+        <span>017676767871</span>
+        <a href="mailto:eliasdiener2008@gmail.com">eliasdiener2008@gmail.com</a>
+        <a href="https://github.com/EliasDiener" target="_blank">github.com/EliasDiener</a>
+      </div>
+    </header>
+
+    <section class="cv-layout">
+      <aside class="cv-sidebar">
+        <div class="cv-section">
+          <h2>Profil</h2>
+          <p>Ruhig, konzentriert und lernbereit. Starkes Interesse an Technik, Systemen und dem Verständnis von Software sowie Hardware. Eigenständiges Lernen und praktische Umsetzung stehen im Mittelpunkt.</p>
+        </div>
+
+        <div class="cv-section">
+          <h2>Kenntnisse</h2>
+          <div class="cv-skill-block">
+            <div class="cv-skill-item">
+              <strong>Programmierung</strong>
+              <p>C++ (Fokus), Raylib, C# und Python (Basics)</p>
+            </div>
+            <div class="cv-skill-item">
+              <strong>Web</strong>
+              <p>HTML, CSS (Grundkenntnisse)</p>
+            </div>
+            <div class="cv-skill-item">
+              <strong>Systeme</strong>
+              <p>Linux, Ubuntu Desktop, Ubuntu Server</p>
+            </div>
+            <div class="cv-skill-item">
+              <strong>Tools</strong>
+              <p>VS Code, GitHub, Terminal</p>
+            </div>
+            <div class="cv-skill-item">
+              <strong>Server</strong>
+              <p>Nextcloud, Jellyfin, erste Docker-Erfahrungen</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h2>Stärken</h2>
+          <ul class="cv-strength-list">
+            <li>Schnelle Auffassungsgabe</li>
+            <li>Eigeninitiative</li>
+            <li>Konzentrierte Arbeitsweise</li>
+            <li>Technisches Interesse</li>
+            <li>Hohe Lernbereitschaft</li>
+          </ul>
+        </div>
+
+        <div class="cv-section">
+          <h2>Sprachen</h2>
+          <ul class="cv-strength-list">
+            <li>Deutsch – Muttersprache</li>
+            <li>Englisch – fließend</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="cv-main">
+        <div class="cv-section">
+          <h2>Projekte</h2>
+
+          <article class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Zwei fertige Spiele (C++ / Raylib)</div>
+              <div class="cv-entry-time">Mär – Apr 2026</div>
+            </div>
+            <div class="cv-entry-sub">Eigene Spieleprojekte</div>
+            <p>Entwicklung zweier vollständiger Spiele in C++ mit dem Raylib-Framework, begonnen Ende Februar 2026 nach eigenständiger Einarbeitung in C++ und Linux seit Januar 2026. Vollständig eigenständig — ohne Engine, ohne KI. Schwerpunkte: Spielschleife, Kollisionserkennung, Physik, JSON-Datenspeicherung.</p>
+            <div class="cv-tag-wrap">
+              <span class="cv-tag">C++</span>
+              <span class="cv-tag">Raylib</span>
+              <span class="cv-tag">cJSON</span>
+              <span class="cv-tag">Game Development</span>
+            </div>
+          </article>
+
+          <article class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">UI Editor (in Entwicklung)</div>
+              <div class="cv-entry-time">Apr 2026 – heute</div>
+            </div>
+            <div class="cv-entry-sub">Aktuelles Hauptprojekt</div>
+            <p>Entwicklung eines eigenen UI-Layout-Editors in C++ mit Raylib. Ziel: Visuelle Platzierung von UI-Elementen und Export in ein nutzbares Format. Aktuell frühe Entwicklungsphase. Erstes Projekt, bei dem KI bewusst als Werkzeug eingesetzt wird, um den produktiven Umgang damit zu erlernen.</p>
+            <div class="cv-tag-wrap">
+              <span class="cv-tag">C++</span>
+              <span class="cv-tag">Raylib</span>
+              <span class="cv-tag">Tooling</span>
+            </div>
+          </article>
+
+          <article class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Heimserver / Homelab</div>
+              <div class="cv-entry-time">Feb – Mär 2026</div>
+            </div>
+            <div class="cv-entry-sub">Eigenes Praxisprojekt</div>
+            <p>Einrichtung eines eigenen Servers mit Ubuntu Server. Im Februar: Nextcloud (lokal) und Jellyfin. Im März: eigene Domain und HTTPS für Nextcloud hinzugefügt — öffentlich erreichbar, selbst verwaltet. Erste praktische Erfahrungen mit Docker.</p>
+            <div class="cv-tag-wrap">
+              <span class="cv-tag">Ubuntu Server</span>
+              <span class="cv-tag">Nextcloud</span>
+              <span class="cv-tag">Jellyfin</span>
+              <span class="cv-tag">Docker</span>
+              <span class="cv-tag">HTTPS / Domain</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="cv-section">
+          <h2>Bildungsweg</h2>
+          <article class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">BBS Fredenberg</div>
+              <div class="cv-entry-time">2025 – heute</div>
+            </div>
+            <div class="cv-entry-sub">Gymnasiale Oberstufe</div>
+          </article>
+          <article class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Heinrich Büssing Schule, Braunschweig</div>
+              <div class="cv-entry-time">2024 – 2025</div>
+            </div>
+            <div class="cv-entry-sub">Einführungsphase der gymnasialen Oberstufe</div>
+          </article>
+          <article class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Oberschule Söhlde</div>
+              <div class="cv-entry-time">2022 – 2024</div>
+            </div>
+            <div class="cv-entry-sub">Erweiterter Sekundarabschluss I</div>
+          </article>
+        </div>
+
+        <div class="cv-section">
+          <h2>Praktische Erfahrung</h2>
+          <article class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Salzgitter-Tafel e.V.</div>
+              <div class="cv-entry-time">09/2023</div>
+            </div>
+            <div class="cv-entry-sub">Praktikant / ehrenamtliche Unterstützung</div>
+            <p>Unterstützung im Arbeitsbereich, strukturierte Ausführung übertragener Aufgaben und praktische Einblicke in organisierte Abläufe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
