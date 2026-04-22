@@ -1,0 +1,59 @@
+#include "../Includes/UiElements.h"
+
+void UiElements::updateMouse()
+{
+    Vector2 mousePos = GetMousePosition();
+    mouse = { mousePos.x, mousePos.y, 1, 1 };
+}
+
+bool UiElements::isHovering(const Rectangle& r) const
+{
+    return CheckCollisionRecs(r, mouse);
+}
+
+bool UiElements::isClicked(const Rectangle& r) const
+{
+    return isHovering(r) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
+}
+
+void UiElements::drawBox(int x, int y, int w, int h, Color boxColor) const
+{
+    DrawRectangle(x, y, w, h, boxColor);
+}
+
+void UiElements::drawBoxRec(const Rectangle& r, Color boxColor) const
+{
+    DrawRectangleRec(r, boxColor);
+}
+
+int UiElements::getCenteredTextX(float boxX, float boxWidth,
+                                 const std::string& text, int textSize) const
+{
+    int textWidth = MeasureText(text.c_str(), textSize);
+    return static_cast<int>(boxX + (boxWidth - textWidth) / 2);
+}
+
+void UiElements::drawBoxWithText(int x, int y, int w, int h, int yText,
+                                 Color boxColor, const std::string& text,
+                                 int textSize, Color textColor) const
+{
+    DrawRectangle(x, y, w, h, boxColor);
+
+    int textX = getCenteredTextX(static_cast<float>(x),
+                                 static_cast<float>(w),
+                                 text,
+                                 textSize);
+
+    DrawText(text.c_str(), textX, yText, textSize, textColor);
+}
+
+void UiElements::drawBoxWithTextRec(const Rectangle& r, int yText,
+                                    Color boxColor, const std::string& text,
+                                    int textSize, Color textColor) const
+{
+    DrawRectangleRec(r, boxColor);
+
+    int textX = getCenteredTextX(r.x, r.width, text, textSize);
+
+    DrawText(text.c_str(), textX, yText, textSize, textColor);
+}

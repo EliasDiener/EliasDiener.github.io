@@ -1,0 +1,30 @@
+#pragma once
+
+#include "raylib.h"
+#include <string>
+
+class UiElements
+{
+public:
+    Rectangle mouse = {0, 0, 1, 1};
+
+    void updateMouse();
+
+    bool isHovering(const Rectangle& r) const;
+    bool isClicked(const Rectangle& r) const;
+
+    void drawBox(int x, int y, int w, int h, Color boxColor) const;
+    void drawBoxRec(const Rectangle& r, Color boxColor) const;
+
+    void drawBoxWithText(int x, int y, int w, int h, int yText,
+                         Color boxColor, const std::string& text,
+                         int textSize, Color textColor) const;
+
+    void drawBoxWithTextRec(const Rectangle& r, int yText,
+                            Color boxColor, const std::string& text,
+                            int textSize, Color textColor) const;
+
+private:
+    int getCenteredTextX(float boxX, float boxWidth,
+                         const std::string& text, int textSize) const;
+};
