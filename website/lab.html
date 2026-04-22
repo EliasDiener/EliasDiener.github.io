@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab — Elias Diener</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/lab.css" />
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="index.html" class="logo">ED<span class="logo-dot">.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="lab.html" class="nav-link active">Lab</a></li>
+        <li><a href="https://github.com/EliasDiener" target="_blank" class="nav-link nav-gh">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="hero-bg">
+      <div class="grid-texture"></div>
+      <div class="glow glow-1"></div>
+    </div>
+    <div class="container">
+      <div class="section-label reveal">Demos</div>
+      <h1 class="page-title reveal reveal-delay-1">Lab</h1>
+      <p class="page-sub reveal reveal-delay-2">Live demos — playable directly in the browser.</p>
+    </div>
+  </div>
+
+  <main class="lab-main">
+    <div class="container">
+
+      <div class="demo-card reveal">
+        <div class="demo-card-header">
+          <div class="demo-meta">
+            <span class="project-tag">C++</span>
+            <span class="project-tag">Raylib</span>
+            <span class="project-tag wip-tag">Web port in progress</span>
+          </div>
+          <h2>Cube Runner</h2>
+          <p>Jump over obstacles, beat your highscore. The web version is still being ported from C++ — the demo will appear here once it's ready.</p>
+        </div>
+        <div class="demo-frame">
+          <!--
+            Once the web build is ready, replace this block with:
+            <iframe src="apps/cuberunner/index.html" width="100%" height="480" frameborder="0"></iframe>
+          -->
+          <div class="demo-placeholder">
+            <span class="demo-icon">🎮</span>
+            <p>Web demo coming soon</p>
+            <span class="demo-sub">C++ → Web port in progress</span>
+            <a href="projects.html#game2" class="btn btn-ghost btn-sm" style="margin-top:16px">View source code →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">ED<span class="logo-dot">.</span></div>
+      <div class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="lab.html">Lab</a>
+        <a href="https://github.com/EliasDiener" target="_blank">GitHub</a>
+        <a href="mailto:eliasdiener2008@gmail.com">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Elias Diener. Built by hand.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

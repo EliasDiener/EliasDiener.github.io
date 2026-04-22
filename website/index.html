@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elias Diener — Game Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="index.html" class="logo">ED<span class="logo-dot">.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="lab.html" class="nav-link">Lab</a></li>
+        <li><a href="https://github.com/EliasDiener" target="_blank" class="nav-link nav-gh">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="grid-texture"></div>
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-label reveal">
+        <span class="dot"></span> Available for opportunities
+      </div>
+      <h1 class="hero-title reveal reveal-delay-1">
+        <span class="line">Building games</span>
+        <span class="line accent-line">from scratch.</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        I'm Elias — a self-taught developer focused on C++ and Raylib.<br>
+        I write every line myself. No engines. No shortcuts.
+      </p>
+      <div class="hero-cta reveal reveal-delay-3">
+        <a href="projects.html" class="btn btn-primary">View Projects</a>
+        <a href="about.html" class="btn btn-ghost">About me →</a>
+      </div>
+      <div class="hero-stats reveal reveal-delay-4">
+        <div class="stat">
+          <span class="stat-num">C++</span>
+          <span class="stat-label">Primary Language</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">Jan '26</span>
+          <span class="stat-label">Started C++ &amp; Linux</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">0% AI</span>
+          <span class="stat-label">In finished projects</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint reveal reveal-delay-4">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section class="featured" id="featured">
+    <div class="container">
+      <div class="section-label reveal">Featured Work</div>
+      <h2 class="section-title reveal">Projects I'm proud of.</h2>
+
+      <div class="featured-grid">
+        <!-- Project 1 -->
+        <article class="project-card project-card--large reveal">
+          <div class="project-card-bg" style="--card-hue: 200"></div>
+          <div class="project-card-inner">
+            <div class="project-meta">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">Raylib</span>
+              <span class="project-tag">Game</span>
+            </div>
+            <h3 class="project-name">Defend a Cube</h3>
+            <p class="project-desc">
+              Wave-based shooter — my first C++ project. Built in 2 weeks from zero knowledge, entirely without AI. Enemies, projectiles, a stat shop, all from scratch.
+            </p>
+            <div class="project-footer">
+              <a href="projects.html#game1" class="project-link">View details →</a>
+            </div>
+          </div>
+          <div class="project-number">01</div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card reveal reveal-delay-1">
+          <div class="project-card-bg" style="--card-hue: 160"></div>
+          <div class="project-card-inner">
+            <div class="project-meta">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">Raylib</span>
+              <span class="project-tag">Game</span>
+            </div>
+            <h3 class="project-name">Cube Runner</h3>
+            <p class="project-desc">
+              Endless runner with velocity-based physics and JSON highscore save. Designed to become a web app.
+            </p>
+            <div class="project-footer">
+              <a href="projects.html#game2" class="project-link">View details →</a>
+            </div>
+          </div>
+          <div class="project-number">02</div>
+        </article>
+
+        <!-- Project 3 — WIP -->
+        <article class="project-card project-card--wip reveal reveal-delay-2">
+          <div class="project-card-bg" style="--card-hue: 45"></div>
+          <div class="project-card-inner">
+            <div class="project-meta">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">Raylib</span>
+              <span class="project-tag wip-tag">In Progress</span>
+            </div>
+            <h3 class="project-name">Editor Project</h3>
+            <p class="project-desc">
+              A custom-built level/scene editor. The most ambitious project yet — built to understand tooling from the inside out.
+            </p>
+            <div class="project-footer">
+              <a href="projects.html#editor" class="project-link">See progress →</a>
+            </div>
+          </div>
+          <div class="project-number">03</div>
+        </article>
+      </div>
+
+      <div class="see-all reveal">
+        <a href="projects.html" class="btn btn-outline">See all projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT TEASER -->
+  <section class="about-teaser">
+    <div class="container about-teaser-grid">
+      <div class="about-teaser-text reveal">
+        <div class="section-label">Who I am</div>
+        <h2 class="section-title">C++ since Jan '26.<br>No shortcuts.</h2>
+        <p>
+          I picked up C++ and Linux from zero in January 2026. I hate inefficiency — I'd rather talk directly to hardware than add layers between me and what's actually running. No VMs, no heavy engines, no vibe coding.
+        </p>
+        <a href="about.html" class="btn btn-ghost" style="margin-top:24px">Full profile →</a>
+      </div>
+      <div class="about-teaser-skills reveal reveal-delay-1">
+        <div class="skill-row">
+          <div class="skill-bar-item">
+            <span>C++ / Raylib</span>
+            <div class="skill-bar"><div class="skill-fill" style="--w:72%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <span>C# / Python</span>
+            <div class="skill-bar"><div class="skill-fill" style="--w:50%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <span>HTML / CSS</span>
+            <div class="skill-bar"><div class="skill-fill" style="--w:60%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <span>Linux / Server</span>
+            <div class="skill-bar"><div class="skill-fill" style="--w:65%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">ED<span class="logo-dot">.</span></div>
+      <div class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="lab.html">Lab</a>
+        <a href="https://github.com/EliasDiener" target="_blank">GitHub</a>
+        <a href="mailto:eliasdiener2008@gmail.com">Contact</a>
+      </div>
+      <div class="footer-copy">© 2025 Elias Diener. Built by hand.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
